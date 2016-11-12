@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
     <style>
         .input-validation-error, .required
@@ -42,7 +42,7 @@
     </style>
 </head>
 <body>
-    @Scripts.Render("~/bunldes/jquery", "~/bundles/jqueryvale", "~/Scripts/bootstrap.js")
+    @Scripts.Render("~/bunldes/jquery", "~/bundles/jqueryval", "~/Scripts/bootstrap.js", "~/Content/style.css")
 
     <div id="body" class="container">
         @RenderSection("featured", required: false)

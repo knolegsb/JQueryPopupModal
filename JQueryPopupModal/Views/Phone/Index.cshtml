@@ -1,7 +1,7 @@
 ﻿@model JQueryPopupModal.Services.PagedList<JQueryPopupModal.Entities.Phone>
 @{
     ViewBag.Title = "Phone List";
-    Layout = "~/Views/Shared/_JqueryLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -44,7 +44,7 @@
 
                 @grid.GetHtml(htmlAttributes: new { id = "grid" },   // id for ajaxUpdateContainerId parameter
                     fillEmptyRows: false,
-                    tableStyle: "table table-bordered table-hover",
+                    tableStyle: "table table-bordered table-hover table-striped",
                     mode: WebGridPagerModes.All,
                     columns:
                         grid.Columns(
@@ -70,7 +70,7 @@
 <div id="myModal" class="modal fade in">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div id="myModalCotent"></div>
+            <div id="myModalContent"></div>
         </div>
     </div>
 </div>

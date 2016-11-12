@@ -1,9 +1,10 @@
 ﻿@model JQueryPopupModal.Entities.Phone
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 class="modal-title">Edit Phone</h3>
 </div>
+
 
 @using (Html.BeginForm())
 {
@@ -11,21 +12,22 @@
     @Html.HiddenFor(m => m.PhoneId)
 
     <div class="modal-body">
+
         <div class="form-horizontal">
-            <div class="form-control">
-                @Html.LabelFor(m => Model.Model, new { @class="control-label col-sm-3" })
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Model, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.Model, new { @class="form-control required" })
+                    @Html.TextBoxFor(m => m.Model, new { @class = "form-control required" })
                     <div>
                         @Html.ValidationMessageFor(m => m.Model)
                     </div>
                 </div>
             </div>
 
-            <div class="from-group">
+            <div class="form-group">
                 @Html.LabelFor(m => Model.Company, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.Company, new { @class="form-control required" })
+                    @Html.TextBoxFor(m => m.Company, new { @class = "form-control required" })
                     <div>
                         @Html.ValidationMessageFor(m => m.Company)
                     </div>
