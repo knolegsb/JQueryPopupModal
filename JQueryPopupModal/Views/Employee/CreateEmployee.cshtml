@@ -1,0 +1,78 @@
+﻿@model JQueryPopupModal.Services.EmployeeModel
+@{
+    Layout = null;
+}
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@using(Html.BeginForm("CreateEmployee", "ManageEmployee", "POST"))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>EmployeeModel</legend>
+        <table width="100%">
+            <tr>
+                <td>@Html.LabelFor(model => model.Emp_Id)</td>
+                <td>
+                    @Html.EditorFor(model => model.Emp_Id)
+                    @Html.ValidationMessageFor(model => model.Emp_Id)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Name)</td>
+                <td>
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Department)</td>
+                <td>
+                    @Html.EditorFor(model => model.Department)
+                    @Html.ValidationMessageFor(model => model.Department)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.City)</td>
+                <td>
+                    @Html.EditorFor(model => model.City)
+                    @Html.ValidationMessageFor(model => model.City)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.State)</td>
+                <td>
+                    @Html.EditorFor(model => model.State)
+                    @Html.ValidationMessageFor(model => model.State)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Country)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Country)
+                    @Html.ValidationMessageFor(model => model.Country)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Mobile)</td>
+                <td>
+                    @Html.EditorFor(model => model.Mobile)
+                    @Html.ValidationMessageFor(model => model.Mobile)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" id="btnSave" name="Command" value="Save" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                        <span class="ui-button-text">Save</span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}
+

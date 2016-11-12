@@ -35,5 +35,6 @@ namespace JQueryPopupModal.Models
         public DbSet<Country> Countries { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Phone> Phones { get; set; }
     }
 }
