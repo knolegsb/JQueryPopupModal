@@ -209,14 +209,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxEmployeeController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeAjaxController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeModalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhoneController.cs" />
+    <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerDB.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Phone.cs" />
     <Compile Include="Entities\State.cs" />
@@ -243,6 +248,14 @@
     <Compile Include="Migrations\201611111931057_AddDataIntoPhoneTable.cs" />
     <Compile Include="Migrations\201611111931057_AddDataIntoPhoneTable.Designer.cs">
       <DependentUpon>201611111931057_AddDataIntoPhoneTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611140712539_AddBooksTable.cs" />
+    <Compile Include="Migrations\201611140712539_AddBooksTable.Designer.cs">
+      <DependentUpon>201611140712539_AddBooksTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611141745293_AddCustomerTable.cs" />
+    <Compile Include="Migrations\201611141745293_AddCustomerTable.Designer.cs">
+      <DependentUpon>201611141745293_AddCustomerTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -388,6 +401,8 @@
     <Content Include="Views\EmployeeAjax\Edit.cshtml" />
     <Content Include="Views\EmployeeAjax\Index.cshtml" />
     <Content Include="Views\AjaxEmployee\Index.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,6 +429,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611111931057_AddDataIntoPhoneTable.resx">
       <DependentUpon>201611111931057_AddDataIntoPhoneTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140712539_AddBooksTable.resx">
+      <DependentUpon>201611140712539_AddBooksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141745293_AddCustomerTable.resx">
+      <DependentUpon>201611141745293_AddCustomerTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

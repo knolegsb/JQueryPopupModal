@@ -41,7 +41,7 @@ namespace JQueryPopupModal.Controllers
             return Json(emp, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Update(Employee emp)
         {
             if (ModelState.IsValid)
@@ -52,10 +52,10 @@ namespace JQueryPopupModal.Controllers
             return Json(emp, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-            var employee = _context.Employees.ToList().Find(m => m.Id == id);
+            var employee = _context.Employees.Find(id);
             if (employee != null)
             {
                 _context.Employees.Remove(employee);

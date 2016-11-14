@@ -1,0 +1,288 @@
+﻿@model JQueryPopupModal.Entities.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Customers Record</h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Customer</button><br /><br />
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Age
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Country
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="CustomerId">Id</label>
+                            <input type="text" class="form-control" id="CustomerId" placeholder="Id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" id="Name" placeholder="Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Age">Age</label>
+                            <input type="text" class="form-control" id="Age" placeholder="Age" />
+                        </div>
+                        <div class="form-group">
+                            <label for="State">State</label>
+                            <input type="text" class="form-control" id="State" placeholder="State" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Country">Country</label>
+                            <input type="text" class="form-control" id="Country" placeholder="Country" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display: none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    // Load Data in Table when document is ready
+    $(document).ready(function () {
+        loadData();
+    });
+
+    // Load Data function
+    function loadData() {
+        $.ajax({
+            url: "/Customer/List",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += '<tr>';;
+                    html += '<td>' + item.CustomerId + '</td>';
+                    html += '<td>' + item.Name + '</td>';
+                    html += '<td>' + item.Age + '</td>';
+                    html += '<td>' + item.State + '</td>';
+                    html += '<td>' + item.Country + '</td>';
+                    html += '<td><a href="#" onclick="return getById(' + item.CustomerId + ')">Edit</a> | <a href="#" onclick="Delete(' + item.CustomerId + ')">Delete</a></td>';
+                    html += '</tr>';
+                });
+                $('.tbody').html(html);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    // Add Data Function
+    function Add() {
+        var res = validate();
+        if (res == false) {
+            return false;
+        }
+
+        var customer = {
+            CustomerId: $('#CustomerId').val(),
+            Name: $('#Name').val(),
+            Age: $('#Age').val(),
+            State: $('#State').val(),
+            Country: $('#Country').val()
+        };
+
+        $.ajax({
+            url: "/Customer/Add",
+            data: JSON.stringify(customer),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                loadData();
+                $('#myModal').modal('hide');
+            },
+            error: function (erormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    // Function for getting the Data based upon Customer Id
+    function getById(cusId) {
+        $('#Name').css('border-color', 'lightgrey');
+        $('#Age').css('border-color', 'lightgrey');
+        $('#State').css('border-color', 'lightgrey');
+        $('#Country').css('border-color', 'lightgrey');
+        $.ajax({
+            url: "/Customer/GetById/" + cusId,
+            type: "GET",
+            contentType: "application/json; charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                $('#CustomerId').val(result.CustomerId);
+                $('#Name').val(result.Name);
+                $('#Age').val(result.Age);
+                $('#State').val(result.State);
+                $('#Country').val(result.Country);
+
+                $('#myModal').modal('show');
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+        return false;
+    }
+
+    // function for updating customer's record
+    function Update() {
+        var res = validate();
+        if (res == false) {
+            return false;
+        }
+        var customer = {
+            CustomerId: $('#CustomerId').val(),
+            Name: $('#Name').val(),
+            Age: $('#Age').val(),
+            State: $('#State').val(),
+            Country: $('#Country').val()
+        };
+        $.ajax({
+            url: "/Customer/Update",
+            data: JSON.stringify(customer),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result){
+                loadData();
+                $('#myModal').modal('hide');
+                $('#CustomerId').val("");
+                $('#Name').val("");
+                $('#Age').val("");
+                $('#State').val("");
+                $('#Country').val("");
+            },
+            error: function(errormessage){
+                alert(errormessge.responseText);
+            }
+        });
+    }
+
+    // function for deleting customer's record
+    function Delete(id) {
+        var answer = confirm("Are you sure you want to delete this record?");
+        if (answer) {
+            $.ajax({
+                url: "/Customer/Delete/" + id,
+                type: "POST",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+                    loadData();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+
+    // function for clearing the textboxes
+    function clearTextBox() {
+        $('#CustomerId').val("");
+        $('#Name').val("");
+        $('#Age').val("");
+        $('#State').val("");
+        $('#Country').val("");
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+        $('#Name').css('border-color', 'lightgrey');
+        $('#Age').css('border-color', 'lightgrey');
+        $('#State').css('border-color', 'lightgrey');
+        $('#Country').css('border-color', 'lightgrey');
+    }
+
+    // validation using jquery
+    function validate() {
+        var isValid = true;
+        if ($('#Name').val().trim() == "") {
+            $('#Name').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#Name').css('border-color', 'lightgrey');
+        }
+
+        if ($('#Age').val().trim() == ""){
+            $('#Age').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#Age').css('border-color', 'lightgrey');
+        }
+        if ($('#State').val().trim() == ""){
+            $('#State').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#State').css('border-color', 'lightgrey');
+        }
+        if ($('#Country').val().trim() == "") {
+            $('#Country').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#Country').css('border-color', 'lightgrey');
+        }
+        return isValid;
+    }
+</script>
+

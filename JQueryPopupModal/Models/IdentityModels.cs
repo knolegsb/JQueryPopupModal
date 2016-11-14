@@ -36,5 +36,7 @@ namespace JQueryPopupModal.Models
         public DbSet<State> States { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Phone> Phones { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }
