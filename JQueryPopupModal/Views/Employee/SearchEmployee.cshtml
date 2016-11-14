@@ -13,8 +13,13 @@
 @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
 <script>
     $(document).ready(function () {
+        $.ajaxSetup({cache: false});
+
         $("#AddEmployee").live("click", function (e) {
+            e.preventDefault();
+
             var url = $(this).attr("href");
+
             $("#dialog-edit").dialog({
                 title: "Add New Employee",
                 autoOpen: false,

@@ -1,0 +1,78 @@
+﻿@model JQueryPopupModal.Entities.Employee
+
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Employee</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model =>model.Id)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Id)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Emp_Id)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Emp_Id)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Department)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Department)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.City)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.City)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.State)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.State)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Country)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Country)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Mobile)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Mobile)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }, new { @class="editDialog"}) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

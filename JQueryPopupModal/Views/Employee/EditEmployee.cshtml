@@ -1,5 +1,6 @@
 ﻿@model JQueryPopupModal.Services.EmployeeModel
-@{
+
+@{ 
     Layout = null;
 }
 
@@ -7,11 +8,13 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-@using(Html.BeginForm("CreateEmployee", "Employee", "POST"))
+@using(Html.BeginForm("UpdateEmployee", "Employee", "POST"))
 {
     @Html.ValidationSummary(true)
+
     <fieldset>
         <legend>EmployeeModel</legend>
+        @Html.HiddenFor(model => model.Id)
         <table width="100%">
             <tr>
                 <td>@Html.LabelFor(model => model.Emp_Id)</td>
@@ -42,16 +45,7 @@
                 </td>
             </tr>
             <tr>
-                <td>@Html.LabelFor(model => model.State)</td>
-                <td>
-                    @Html.EditorFor(model => model.State)
-                    @Html.ValidationMessageFor(model => model.State)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.Country)
-                </td>
+                <td>@Html.LabelFor(model => model.Country)</td>
                 <td>
                     @Html.EditorFor(model => model.Country)
                     @Html.ValidationMessageFor(model => model.Country)
@@ -67,12 +61,11 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="submit" id="btnSave" name="Command" value="Save" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
-                        <span class="ui-button-text">Save</span>
+                    <button type="submit" id="btnUpdate" name="Command" value="Update" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                        <span class="ui-button-text">Update</span>
                     </button>
                 </td>
             </tr>
         </table>
     </fieldset>
 }
-

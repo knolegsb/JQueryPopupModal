@@ -44,11 +44,11 @@ namespace JQueryPopupModal.Controllers
             if (Request.IsAjaxRequest())
             {
                 ViewBag.IsUpdate = false;
-                return View("_CrateEmployee");
+                return View("CrateEmployee");
             }
             else
             {
-                return View();
+                return View("CreateEmployee");
             }
         }
 
@@ -57,7 +57,7 @@ namespace JQueryPopupModal.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("_CreateEmployee", emp);
+                return PartialView("CreateEmployee", emp);
             }
             else
             {
@@ -78,7 +78,7 @@ namespace JQueryPopupModal.Controllers
                     return RedirectToAction("SearchEmployee", "Employee");
                 }
             }
-            return PartialView("_CreateEmployee");
+            return PartialView("CreateEmployee");
         }
 
         public ActionResult EditEmployee(int id)
@@ -98,7 +98,7 @@ namespace JQueryPopupModal.Controllers
                 employeeModel.Mobile = data.Mobile;
 
                 ViewBag.IsUpdate = true;
-                return View("_EditEmployee", employeeModel);
+                return View("EditEmployee", employeeModel);
             }
             else
             {
@@ -111,7 +111,7 @@ namespace JQueryPopupModal.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("_EditEmployee", emp);
+                return PartialView("EditEmployee", emp);
             }
             else
             {
@@ -133,7 +133,7 @@ namespace JQueryPopupModal.Controllers
                     return RedirectToAction("SearchEmployee", "Employee");
                 }
             }
-            return PartialView("_EditEmployee");
+            return PartialView("EditEmployee");
         }
 
         public ActionResult ViewEmployeeDetail(int id)
@@ -151,7 +151,7 @@ namespace JQueryPopupModal.Controllers
                 employeeModel.Country = data.Country;
                 employeeModel.Mobile = data.Mobile;
 
-                return View("_EmployeeDetail", employeeModel);
+                return View("EmployeeDetail", employeeModel);
             }
             else
             {

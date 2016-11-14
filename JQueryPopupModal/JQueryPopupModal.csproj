@@ -208,7 +208,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxEmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeAjaxController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeModalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhoneController.cs" />
@@ -300,6 +303,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\wait.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -371,6 +375,19 @@
     <Content Include="Views\Shared\Partials\Edit.cshtml" />
     <Content Include="Views\Shared\Partials\Details.cshtml" />
     <Content Include="Views\Shared\Partials\Delete.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
+    <Content Include="Views\Employee\EmployeeDetail.cshtml" />
+    <Content Include="Views\EmployeeModal\Index.cshtml" />
+    <Content Include="Views\EmployeeModal\_EmployeeList.cshtml" />
+    <Content Include="Views\EmployeeModal\EmployeeList.cshtml" />
+    <Content Include="Views\EmployeeModal\_EmployeeDetails.cshtml" />
+    <Content Include="Views\EmployeeModal\EmployeeDetails.cshtml" />
+    <Content Include="Views\EmployeeAjax\Create.cshtml" />
+    <Content Include="Views\EmployeeAjax\Delete.cshtml" />
+    <Content Include="Views\EmployeeAjax\Details.cshtml" />
+    <Content Include="Views\EmployeeAjax\Edit.cshtml" />
+    <Content Include="Views\EmployeeAjax\Index.cshtml" />
+    <Content Include="Views\AjaxEmployee\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
