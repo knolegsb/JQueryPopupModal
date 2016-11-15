@@ -6,7 +6,7 @@
 <h2>Index</h2>
 
 <p>
-    <button type="button" id="btnCreate" class="btn btn-primary" data-toggle="modal" data-target="#empModal">
+    <button type="button" id="btnCreate" class="btn btn-primary" data-toggle="modal" data-target="#empModal" onclick="createNew();">
         Create New
     </button>
 </p>
@@ -97,7 +97,12 @@
             getEmployees();
         });
 
-        var isUpdatable = true;
+        var isUpdatable;
+
+        function createNew() {
+            isUpdatable = false;
+            return isUpdatable;
+        }
 
         function getEmployees() {
             $.ajax({
@@ -129,8 +134,9 @@
         }
 
         function getDetailEmp(id) {
-            $("#title").text("Details");
+            $("#title").text("Details");            
             $("#empModal").modal("show");
+            isUpdatable = true;
             $.ajax({
                 url: '/AjaxEmployee/GetEmployee/' + id,
                 type: 'GET',
@@ -164,7 +170,7 @@
                 Mobile: $("#Mobile").val()
             }
 
-            if (!isUpdatable) {
+            if (isUpdatable == false) {
                 $.ajax({
                     url: '/AjaxEmployee/Create/',
                     type: 'POST',
